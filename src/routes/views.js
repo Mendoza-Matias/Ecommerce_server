@@ -1,40 +1,23 @@
 const express = require('express')
-const router = express.Router()
-const middleware = require('../middleware/validarToken');
-const Product = require('../models/productsModel');
+const routerViews = express.Router()
+const validacion = require('../middleware/validarToken');
+const controllerViews = require('../controllers/views');
 
 //Vista principal de la aplicacion
-const vistaPrincipal = router.get('/',async(req,res)=>{
-
-    const todosLosProductos = await Product.find();
-
-    try{
-        res.status(200).json({productos:todosLosProductos})
-    }catch(err){
-        res.status(404).json(err)
-    }
-});
-
+routerViews.get('/',controllerViews.principal);
 
 
 //Vista de registro
-const registro = router.get('/register',async(req,res)=>{
-    try{
-        res.status().json({mensaje:"Registro de usuario"})
-    }catch(err){
-        res.status(404).json(err)
-    }
-});
+routerViews.get('/register',controllerViews.registro);
 
-//Vistas con protección
-const panelDeAdministrador = router.get('/adminPanel',middleware.validarToken,middleware.panelAdministrador);
-const vistaDeCreacion = router.get('/crearProducto',middleware.validarToken,middleware.crearProducto);
-const vistaDeEdicion = router.get('/editarProducto',middleware.validarToken,middleware.editarProducto);
+//Vista del admin
+routerViews.get('/adminPanel',validacion,controllerViews.admin );
 
-module.exports = {
-    vistaPrincipal,
-    registro,
-    panelDeAdministrador,
-    vistaDeCreacion,
-    vistaDeEdicion
-}
+//Vista de crear productos ------------
+routerViews.get('/crearProducto',validacion,controllerViews.crear);
+
+
+//Vista para editar producto ---------------
+routerViews.get('/editarProducto',validacion,controllerViews.editar);
+
+module.exports = routerViews;

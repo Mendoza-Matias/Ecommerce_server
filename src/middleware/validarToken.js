@@ -1,4 +1,4 @@
-const config = require('../config/config');
+const config = require('../utils/config');
 const jwt = require('jsonwebtoken');
 
 //validacion para el token del usuario al ir a una ruta privada
@@ -26,35 +26,6 @@ const validarToken = (req,res,next) =>{
     }
 }
 
-//Vistas con bloqueo por tokens
 
-    const panelAdministrador = async(req,res) =>{
-    try {
-        res.json({mensaje:'AdministrarProductos'})
-    } catch (error) {
-        res.json(error)
-    }
-    }
 
-    const editarProducto = async(req,res) =>{
-    try {
-        res.json({mensaje:'EditarProducto'})
-    } catch (error) {
-        res.json(error)
-    }
-    }
-
-    const crearProducto = async(req,res) =>{
-        try {
-            res.json({mensaje:'Crear Producto'})
-        } catch (error) {
-            res.json(error)
-        }
-    }
-
-module.exports = {
-    validarToken,
-    panelAdministrador,
-    editarProducto,
-    crearProducto,
-}
+module.exports =  validarToken;
