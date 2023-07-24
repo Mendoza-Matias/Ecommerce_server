@@ -5,6 +5,7 @@ const config = require('../utils/config');
 
 
 //Controlador de registro ----------------
+const hashClave = clave => bcrypt.hashSync(clave,bcrypt.genSaltSync(10));
 
 const registerUser = async(req,res)=>{
 
@@ -15,14 +16,14 @@ const registerUser = async(req,res)=>{
         return res.status(203).json({mensaje:'El correo ya existe'})
     }
 
-
-    const clave = bcrypt.hashSync(req.body.clave,10);
+    const password = hashClave(req.body.clave);
+   
 
     //Guardo la informacion de mi usuario en mi db
     const nuevoUsuario = User({
         nombre:req.body.nombre,
         correo:req.body.correo,
-        clave:clave,
+        clave:password,
         rol:req.body.rol
     })
 
@@ -47,20 +48,20 @@ const loginUser = async(req,res)=>{
     }
 
     //Verifico si la clave es correcta
-    const validarClave = await bcrypt.compare(req.body.clave,User.clave);
+    const validarClave = await bcrypt.compare(req.body.clave,correo.clave);
 
     if(!validarClave){
         return res.status(404).json({mensaje:'Informacion no encontrada'});
     }
-    const datos = await User.findOne(req.body)
+    
 
     //Payload de JWT
     const payload = {
-        _id:datos.id,
-        rol:datos.rol
+        _id:correo.id,
+        rol:correo.rol
     }
     //Genero un token
-    const token = jwt.sign(payload,config.SECRET,{expiresIn:'1h'});
+    const token = jwt.sign(payload,config.SECRET,{expiresIn:60*24});
     try{
         res.status(200).json({mensaje:'Bienvenido',token:token})
     }catch(err){
