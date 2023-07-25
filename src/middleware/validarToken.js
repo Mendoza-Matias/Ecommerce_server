@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 //validacion para el token del usuario al ir a una ruta privada
 const validarToken = (req,res,next) =>{
     //Traigo mi token del req.headers
-    var token = req.header('Authorization');
+    var token = req.header('Authorization').replace('Bearer ','');
     
     console.log(token)
 
@@ -19,6 +19,7 @@ const validarToken = (req,res,next) =>{
             console.log(err)
         }else{
             res.status(200).json({mensaje:'Todo ok'})
+            next();
         }
     })
 }

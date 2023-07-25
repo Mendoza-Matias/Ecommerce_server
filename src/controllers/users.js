@@ -61,7 +61,7 @@ const loginUser = async(req,res)=>{
         rol:correo.rol
     }
     //Genero un token
-    const token = jwt.sign(payload,config.SECRET,{expiresIn:60*24});
+    const token = jwt.sign(payload,config.SECRET,{expiresIn:'30d'});
     try{
         res.status(200).json({mensaje:'Bienvenido',token:token})
     }catch(err){
