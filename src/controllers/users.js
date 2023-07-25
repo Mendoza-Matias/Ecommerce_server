@@ -65,7 +65,7 @@ const loginUser = async(req,res)=>{
     try{
         res.status(200).json({mensaje:'Bienvenido',token:token})
     }catch(err){
-        res.status(401).json(err)
+        res.status(401).json({mensaje:'Error al ingresar a la cuenta'})
     }
 };
 

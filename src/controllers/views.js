@@ -17,7 +17,7 @@ const principal = async(req,res)=>{
 //Registro ----------
 const registro = async(req,res)=>{
     try{
-        res.status().json({mensaje:"Registro de usuario"})
+        res.status(200).json({mensaje:"Registro de usuario"})
     }catch(err){
         res.status(404).json(err)
     }
@@ -27,9 +27,9 @@ const registro = async(req,res)=>{
 
 const admin = async(req,res) =>{
     try {
-        res.json({mensaje:'AdministrarProductos'})
+        res.status(200).json({mensaje:'AdministrarProductos'})
     } catch (error) {
-        res.json(error)
+        res.status(404).json(error)
     }
 };
 
@@ -37,18 +37,18 @@ const admin = async(req,res) =>{
 
 const crear = async(req,res) =>{
     try {
-        res.json({mensaje:'Crear Producto'})
+        res.status(200).json({mensaje:'Crear Producto'})
     } catch (error) {
-        res.json(error)
+        res.sttus(404).json(error)
     }
 };
 
 //Panel de edicion
 const editar =  async(req,res) =>{
     try {
-        res.json({mensaje:'EditarProducto'})
+        res.status(200).json({mensaje:'EditarProducto'})
     } catch (error) {
-        res.json(error)
+        res.status(404).json(error)
     }
 };
 

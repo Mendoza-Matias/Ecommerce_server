@@ -21,7 +21,7 @@ const crear = async(req,res)=>{
         res.status(200).json({mensaje:'Producto guardado correctamente'})
     
     } catch (error) {
-        res.status(404).json({mensaje:'Producto no guardado'})
+        res.status(406).json({mensaje:'Producto no guardado'})
     }
 }
  
@@ -37,7 +37,7 @@ const editar = async(req,res)=>{
 
     } catch (error) {
       
-        res.status(404).json({mensaje:'No se encuentra el producto'})
+        res.status(304).json({mensaje:'No se ha podido modificar'})
     
     }
 }
