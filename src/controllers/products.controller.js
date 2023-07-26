@@ -2,9 +2,37 @@
 
 const Product = require('../models/productsModel');
 
+//Controlador de panel de administrador---
+const admin = async(req,res) =>{
+    try {
+        res.status(200).json({mensaje:'AdministrarProductos'})
+    } catch (error) {
+        res.status(404).json(error)
+    }
+};
+
+
+//Controlador de vista para crear producto --
+const crear = async(req,res) =>{
+    try {
+        res.status(200).json({mensaje:'Crear Producto'})
+    } catch (error) {
+        res.sttus(404).json(error)
+    }
+};
+
+//Controlador de vista para editar producto --
+const editar =  async(req,res) =>{
+    try {
+        res.status(200).json({mensaje:'EditarProducto'})
+    } catch (error) {
+        res.status(404).json(error)
+    }
+};
+
 
 //-----------
-const crear = async(req,res)=>{
+const crearProducto = async(req,res)=>{
     
     //Guardo la informacion de mi producto en mi modelo
     const nuevoProducto = Product ({
@@ -26,7 +54,7 @@ const crear = async(req,res)=>{
 }
  
 //-----------
-const editar = async(req,res)=>{
+const editarProducto = async(req,res)=>{
 
     try {
         //Paso como parametro de la petición para poder buscar el elemento a editar y modifico su cuerpo por medio del formulario.
@@ -44,7 +72,7 @@ const editar = async(req,res)=>{
 
 
 // --------------
-const eliminar = async(req,res)=>{
+const eliminarProducto = async(req,res)=>{
     try {
 
         //Le paso como parametro el id que viene en el request y que tiene que eliminar.
@@ -59,7 +87,10 @@ const eliminar = async(req,res)=>{
 
 
 module.exports = {
+    admin,
     crear,
     editar,
-    eliminar
+    crearProducto,
+    editarProducto,
+    eliminarProducto
 }

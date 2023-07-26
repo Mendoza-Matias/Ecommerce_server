@@ -1,9 +1,9 @@
 const express = require('express');
 const config = require('./utils/config');
 const database = require('./db/database');
-const views = require('./routes/views');
-const users = require('./routes/users');
-const products = require('./routes/products');
+const views = require('./routes/views.routes');
+const users = require('./routes/users.routes');
+const products = require('./routes/products.routes');
 
 database();
 const app = express();

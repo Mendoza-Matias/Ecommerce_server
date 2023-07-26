@@ -3,6 +3,49 @@ const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const config = require('../utils/config');
 
+//Ver todos los usuarios
+const users = async(req,res)=>{
+
+    const todosLosUsuario = await User.find();
+
+    try{
+        res.status(200).json({usuarios:todosLosUsuario})
+    }catch(err){
+        res.status(404).json(err)
+    }
+};
+
+//Ver solo un usuario
+const userOne = async(req,res)=>{
+
+    const unUsuario = await User.findById(req.params['id']);
+
+    try{
+        res.status(200).json({usuarios:unUsuario})
+    }catch(err){
+        res.status(404).json(err)
+    }
+};
+
+
+//Controlador de vista de registro
+const register = async(req,res)=>{
+    try{
+        res.status(200).json({mensaje:"Registro de usuario"})
+    }catch(err){
+        res.status(404).json(err)
+    }
+};
+
+
+//Controlador de vista de Login
+const login = async(req,res)=>{
+    try{
+        res.status(200).json({mensaje:"Registro de usuario"})
+    }catch(err){
+        res.status(404).json(err)
+    }
+};
 
 //Controlador de registro ----------------
 const hashClave = clave => bcrypt.hashSync(clave,bcrypt.genSaltSync(10));
@@ -36,9 +79,9 @@ const registerUser = async(req,res)=>{
     }
 };
 
+//--------------
 
 //Constrolador de Login ---------------------
-
 const loginUser = async(req,res)=>{
     
     const correo = await User.findOne({'correo':req.body.correo})
@@ -70,6 +113,11 @@ const loginUser = async(req,res)=>{
 };
 
 module.exports = {
+    users,
+    userOne,
+    register,
+    login,
     registerUser,
     loginUser
+   
 };
