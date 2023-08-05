@@ -5,8 +5,11 @@ const multerConfig = require('../utils/multer');
 const controllerProducts = require('../controllers/products.controller');
 const validacion = require('../middleware/validarToken');
 
-//Vista de registro
+//Ver todos los productos
+routerProducts.get('/product/all',controllerProducts.principalProductos);
 
+//Ver un solo producto
+routerProducts.get('/product/one',controllerProducts.oneProduct);
 
 //Vista del administrador -----------
 routerProducts.get('/adminPanel',validacion,controllerProducts.admin);

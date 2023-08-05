@@ -7,7 +7,7 @@ const guardarImagen = multer.diskStorage({
     },
     //NOmbre de mi archivo
     filename:(req,file,cb)=>{
-        cb(null,Date.now() + '-' + file.originalname);
+        cb(null,file.fieldname + '-' + Date.now());
     }
 });
 

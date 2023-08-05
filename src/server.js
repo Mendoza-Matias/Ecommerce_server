@@ -1,8 +1,8 @@
 const express = require('express');
 const config = require('./utils/config');
 const database = require('./db/database');
-const views = require('./routes/views.routes');
 const users = require('./routes/users.routes');
+const cors = require('cors');
 const products = require('./routes/products.routes');
 
 database();
@@ -13,11 +13,11 @@ const app = express();
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
+app.use(cors())
+
 
 //Rutas de Usuario
 app.use(users);
-//Vistas
-app.use(views)
 //Rutas de productos (CRUD) -----------
 app.use(products);
 

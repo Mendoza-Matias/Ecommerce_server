@@ -2,6 +2,31 @@
 
 const Product = require('../models/productsModel');
 
+
+//Vista principal de los productos
+const principalProductos = async(req,res)=>{
+
+    const todosLosProductos = await Product.find();
+
+    try{
+        res.status(200).json({productos:todosLosProductos})
+    }catch(err){
+        res.status(404).json(err)
+    }
+};
+
+//Ver un solo producto
+const oneProduct = async(req,res)=>{
+
+    const unProducto = await Product.findById(req.params['id']);
+
+    try{
+        res.status(200).json({producto:unProducto})
+    }catch(err){
+        res.status(404).json(err)
+    }
+};
+
 //Controlador de panel de administrador---
 const admin = async(req,res) =>{
     try {
@@ -87,6 +112,8 @@ const eliminarProducto = async(req,res)=>{
 
 
 module.exports = {
+    principalProductos,
+    oneProduct,
     admin,
     crear,
     editar,
