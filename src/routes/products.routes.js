@@ -9,7 +9,10 @@ const validacion = require('../middleware/validarToken');
 routerProducts.get('/product/all',controllerProducts.principalProductos);
 
 //Ver un solo producto
-routerProducts.get('/product/one',controllerProducts.oneProduct);
+routerProducts.get('/product/one/:id',controllerProducts.oneProduct);
+
+
+routerProducts.get('/product/one/:id/preview',controllerProducts.previewProduct);
 
 //Vista del administrador -----------
 routerProducts.get('/adminPanel',validacion,controllerProducts.admin);
