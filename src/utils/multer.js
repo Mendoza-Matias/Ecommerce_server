@@ -1,4 +1,5 @@
 const multer = require('multer');
+const path = require('path');
 
 //Configuración de multer
 const guardarImagen = multer.diskStorage({
@@ -7,10 +8,10 @@ const guardarImagen = multer.diskStorage({
     },
     //NOmbre de mi archivo
     filename:(req,file,cb)=>{
-        cb(null,file.fieldname + '-' + Date.now());
+        cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 });
 
-const uploads = multer ({storage:guardarImagen});
+const upload = multer ({storage:guardarImagen});
 
-module.exports = uploads;
+module.exports = upload;
