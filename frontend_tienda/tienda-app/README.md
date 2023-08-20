@@ -6,3 +6,7 @@ Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+  # Clonar Repositorio.
+  Al clonar el repositorio favor hacer un npm install o npm i para traer los modulos.
+  Despues hacer npm run dev para desplegar como localhost en el equipo local.
