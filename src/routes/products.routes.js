@@ -11,7 +11,7 @@ routerProducts.get('/product/all',controllerProducts.principalProductos);
 //Ver un solo producto
 routerProducts.get('/product/one/:id',controllerProducts.oneProduct);
 
-
+//Ver imagen de un producto
 routerProducts.get('/product/one/:id/preview',controllerProducts.previewProduct);
 
 //Vista del administrador -----------

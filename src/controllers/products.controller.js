@@ -1,6 +1,5 @@
 //Controladores para los productos
 var path = require('path')
-
 const Product = require('../models/productsModel');
 
 
@@ -25,22 +24,6 @@ const oneProduct = async (req, res) => {
     res.status(200).json({ producto: unProducto })
   } catch (err) {
     res.status(404).json(err)
-  }
-};
-
-
-const previewProduct = async (req, res) => {
-  const unProducto = await Product.findById(req.params['id']);
-  const imagen = '/' + unProducto.imagen
-  // Tenemos que setear la ruta de manera que pueda funcionar adecuadamente, luego podes probar algunos logs para verificarlo
-  try {
-    res.sendFile(path.resolve() + imagen)
-    //O puede usar res.download para descargar el archivo 
-    // Necesitas path.resolve por que para mandar un archivo necesitas la ruta absoluta
-  } catch (err) {
-
-    res.status(404).json(err)
-    console.log(err)
   }
 };
 
@@ -74,7 +57,7 @@ const editar = async (req, res) => {
 };
 
 
-//-----------
+//controlador del metodo post para guardar un producto
 const crearProducto = async (req, res) => {
 
   //Guardo la informacion de mi producto en mi modelo
@@ -99,7 +82,23 @@ const crearProducto = async (req, res) => {
   }
 }
 
-//-----------
+//Controlador para traer una imagen a partir del ID
+const previewProduct = async (req, res) => {
+  const unProducto = await Product.findById(req.params['id']);
+  const imagen = '/' + unProducto.imagen
+  // Tenemos que setear la ruta de manera que pueda funcionar adecuadamente, luego podes probar algunos logs para verificarlo
+  try {
+    res.sendFile(path.resolve() + imagen)
+    //O puede usar res.download para descargar el archivo 
+    // Necesitas path.resolve por que para mandar un archivo necesitas la ruta absoluta
+  } catch (err) {
+
+    res.status(404).json(err)
+    console.log(err)
+  }
+};
+
+//controlador de metodo put
 const editarProducto = async (req, res) => {
 
   try {

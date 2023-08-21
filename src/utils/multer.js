@@ -13,16 +13,12 @@ const guardarImagen = multer.diskStorage({
     // originalName para ver el nombre del archvio original
     // Luego podes agregar mas informacion al nombre como vos gustes
     // Atencionc con dejar al final espacio para la extension del archivo, si no not e va a leer el archivo
-
-        cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-
     }
 });
 
-const upload = multer ({storage:guardarImagen});
+const uploads = multer ({storage:guardarImagen});
 
 
 module.exports = uploads;
 
-module.exports = upload;
 
